@@ -133,7 +133,12 @@ public class MessageListener extends ListenerAdapter {
 					return;
 				}
 
+				if (game != null && game.getGameState() == GameState.LIVE) {
+					game.unmuteAll(guild);
+				}
+
 				game.kill();
+
 				this.universe.removeAudio(ugid);
 				this.universe.removeKaraokeGame(ugid);
 

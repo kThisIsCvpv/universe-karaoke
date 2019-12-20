@@ -34,6 +34,17 @@ public class GuildListener extends ListenerAdapter {
 		Member member = event.getMember();
 
 		System.out.printf("[GuildVoiceJoinEvent - %s] %s has joined %s.\n", guild.getName(), member.getEffectiveName(), to.getName());
+
+		String ugid = guild.getId();
+		KaraokeGame game = this.universe.getKarokeGame(ugid);
+		if (game == null || game.getGameState() != GameState.LIVE)
+			return;
+
+		if (game.getVoiceChannel() == null || !to.getId().equals(game.getVoiceChannel()))
+			return;
+
+		if (game.shouldMute(member))
+			game.mute(guild, member);
 	}
 
 	@Override
@@ -44,6 +55,17 @@ public class GuildListener extends ListenerAdapter {
 		Member member = event.getMember();
 
 		System.out.printf("[GuildVoiceMoveEvent - %s] %s moved from %s to %s.\n", guild.getName(), member.getEffectiveName(), from.getName(), to.getName());
+
+		String ugid = guild.getId();
+		KaraokeGame game = this.universe.getKarokeGame(ugid);
+		if (game == null || game.getGameState() != GameState.LIVE)
+			return;
+
+		if (game.getVoiceChannel() == null || !to.getId().equals(game.getVoiceChannel()))
+			return;
+
+		if (game.shouldMute(member))
+			game.mute(guild, member);
 	}
 
 	@Override

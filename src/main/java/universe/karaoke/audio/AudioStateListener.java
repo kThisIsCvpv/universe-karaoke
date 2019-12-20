@@ -54,6 +54,7 @@ public class AudioStateListener extends AudioEventAdapter {
 		TextChannel channel = jda.getTextChannelById(this.game.getTextChannel());
 		channel.sendMessage("The audio track has finished.").complete();
 
+		this.game.unmuteAll(jda.getGuildById(this.game.getGuild()));
 		this.game.setGameState(GameState.SETUP);
 
 		if (endReason.mayStartNext) {
@@ -77,6 +78,6 @@ public class AudioStateListener extends AudioEventAdapter {
 	@Override
 	public void onTrackStuck(AudioPlayer player, AudioTrack track, long thresholdMs) {
 		// Audio track has been unable to provide us any audio, might want to just start a new track
-		System.out.println("Event Triggered > Track Stuck");
+		System.out.println("[AudioStateListener] onTrackStuck");
 	}
 }

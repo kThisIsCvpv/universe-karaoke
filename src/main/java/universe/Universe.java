@@ -79,11 +79,11 @@ public class Universe {
 	public void setAudio(String guild, AudioPlayer game) {
 		this.audioPlayers.put(guild, game);
 	}
-	
+
 	public int getVolume(String guild) {
 		if (this.audioVolume.containsKey(guild))
 			return this.audioVolume.get(guild);
-		return 50;
+		return 20;
 	}
 
 	public void setVolume(String guild, int volume) {
@@ -101,10 +101,9 @@ public class Universe {
 			System.err.println("Missing discord key file: " + Constant.DISCORD_KEY);
 			System.exit(1);
 			return;
-		}
+		}	
 
 		String privateKey = new String(Files.readAllBytes(privateFile.toPath())).trim();
 		new Universe(privateKey);
 	}
-
 }

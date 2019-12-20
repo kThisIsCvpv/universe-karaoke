@@ -83,8 +83,12 @@ public class YoutubeDownloader implements Runnable, Actionable {
 
 					String fileName = outputFile.getName();
 					int index = fileName.contains(".") ? fileName.lastIndexOf(".") : fileName.length();
-					index = fileName.contains("-") ? fileName.lastIndexOf("-") : fileName.length();
-					this.game.setSongName(fileName.substring(0, index));
+					
+					if (index > 12)
+						index -= 12;
+					
+					fileName = fileName.substring(0, index);					
+					this.game.setSongName(fileName);
 
 					if (!this.game.getVocals()) {
 						channel.sendMessage("**Beginning to render soundtrack:** " + this.game.getSongName()).complete();

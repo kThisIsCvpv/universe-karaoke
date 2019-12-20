@@ -1,9 +1,13 @@
 package universe.karaoke;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.entities.Guild;
+import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.managers.AudioManager;
@@ -36,9 +40,12 @@ public class KaraokeGame {
 
 	private Actionable process;
 
+	private Set<String> mutes;
+
 	public KaraokeGame(Universe universe) {
 		this.universe = universe;
 
+		this.mutes = new HashSet<String>();
 		this.gameState = GameState.SETUP;
 	}
 
@@ -198,5 +205,36 @@ public class KaraokeGame {
 		}
 
 		this.gameState = GameState.SETUP;
+	}
+
+	public void mute(Guild guild, Member member) {
+		String id = member.getId();
+
+		member.mute(true).queue();
+		this.mutes.add(id);
+
+		System.out.printf("[KaraokeGame - %s] Muted %s\n", guild.getName(), id);
+	}
+
+	public void unmuteAll(Guild guild) {
+		for (String uid : this.mutes) {
+			Member member = guild.getMemberById(uid);
+			member.mute(false).queue();
+
+			System.out.printf("[KaraokeGame - %s] Unmuted %s\n", guild.getName(), uid);
+		}
+
+		this.mutes.clear();
+	}
+
+	public boolean shouldMute(Member member) {
+		if (member == null || member.isFake())
+			return false;
+
+		String id = member.getId();
+		if ((id.equals(Constant.BOT_ID)) || (this.singer != null && id.equals(this.singer)))
+			return false;
+
+		return true;
 	}
 }
