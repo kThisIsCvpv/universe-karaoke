@@ -7,12 +7,15 @@ import java.util.Map;
 
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
+import com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager;
+import com.sedmelluq.discord.lavaplayer.source.AudioSourceManagers;
 
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import universe.karaoke.Constant;
 import universe.karaoke.KaraokeGame;
 import universe.karaoke.listener.GuildListener;
+import universe.karaoke.listener.MessageListener;
 
 public class Universe {
 
@@ -33,43 +36,14 @@ public class Universe {
 			return;
 		}
 
-		// TextChannel channel = this.jda.getTextChannelById("457747767637573644");
-		// Message message = channel.sendMessage("Test message.").complete();
-		// message.addReaction(Constant.MICROPHONE_EMOTE).complete();
+		this.activeGames = new HashMap<String, KaraokeGame>();
+		this.audioPlayers = new HashMap<String, AudioPlayer>();
 
-		// this.activeGames = new HashMap<String, KaraokeGame>();
-		// this.audioPlayers = new HashMap<String, AudioPlayer>();
-		//
-		// this.audioManager = new DefaultAudioPlayerManager();
-		// AudioSourceManagers.registerLocalSource(this.audioManager);
-		//
-		// this.jda.addEventListener(new MessageListener(this));
+		this.audioManager = new DefaultAudioPlayerManager();
+		AudioSourceManagers.registerLocalSource(this.audioManager);
+
+		this.jda.addEventListener(new MessageListener(this));
 		this.jda.addEventListener(new GuildListener(this));
-
-		// Guild guild = this.jda.getGuildById("457735247724019712");
-		//
-		// Member member = guild.getMemberById("150506349200015360");
-		// member.mute(true).complete();
-
-		// VoiceChannel vc = this.jda.getVoiceChannelById("657356003310043150");
-		//
-		// AudioManager am = guild.getAudioManager();
-		// am.openAudioConnection(vc);
-		//
-		//
-		// this.audioManager = new DefaultAudioPlayerManager();
-		// AudioSourceManagers.registerLocalSource(this.audioManager);
-		//
-		// AudioPlayer player = this.audioManager.createPlayer();
-
-		//
-		// am.setSendingHandler(new MP3AudioSource(player));
-		//
-		// AudioScheduler scheduler = new AudioScheduler();
-		// player.addListener(scheduler);
-		//
-		// File file = new File("C:/Users/Charles/Desktop/FELT Vivienne You're the Shine(Night Butterflies).mp3");
-		// this.audioManager.loadItem(file.getAbsolutePath(), new AudioLoader(player));
 	}
 
 	public AudioPlayerManager getAudioManager() {

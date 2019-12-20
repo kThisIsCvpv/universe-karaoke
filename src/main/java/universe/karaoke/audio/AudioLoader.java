@@ -28,6 +28,9 @@ public class AudioLoader implements AudioLoadResultHandler {
 	public void trackLoaded(AudioTrack track) {
 		System.out.println("[AudioLoader] Single source found!");
 		this.player.playTrack(track);
+
+		TextChannel channel = this.getChannel();
+		channel.sendMessage("Now Playing: ``" + game.getSongName() + "``").queue();
 	}
 
 	public void playlistLoaded(AudioPlaylist playlist) {
