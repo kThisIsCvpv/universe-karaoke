@@ -83,7 +83,7 @@ public class Universe {
 	public int getVolume(String guild) {
 		if (this.audioVolume.containsKey(guild))
 			return this.audioVolume.get(guild);
-		return 100;
+		return 50;
 	}
 
 	public void setVolume(String guild, int volume) {

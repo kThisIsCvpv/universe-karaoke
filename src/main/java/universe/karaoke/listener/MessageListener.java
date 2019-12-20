@@ -103,6 +103,9 @@ public class MessageListener extends ListenerAdapter {
 					player = this.universe.getAudioManager().createPlayer();
 					this.universe.setAudio(ugid, player);
 
+					int volume = this.universe.getVolume(ugid);
+					player.setVolume(volume);
+
 					am.setSendingHandler(new AudioWrapper(player));
 					player.addListener(new AudioStateListener(this.universe, game));
 
@@ -136,6 +139,35 @@ public class MessageListener extends ListenerAdapter {
 
 				channel.sendMessage("Success! The karaoke bot has been terminated.").complete();
 				return;
+			} else if ((raw.startsWith("::vol") || raw.startsWith("::volume")) && this.hasPermission(member)) {
+				String msg = raw.substring("::setup".length()).trim();
+				String[] args = msg.split(" ");
+
+				if (args.length < 1) {
+					channel.sendMessage("Sorry, I don't understand your query syntax.").complete();
+					return;
+				} else {
+					try {
+						int vol = Integer.parseInt(args[0]);
+						if (vol < 0 || vol > 100)
+							throw new NumberFormatException();
+
+						this.universe.setVolume(ugid, vol);
+
+						AudioPlayer player = this.universe.getAudio(ugid);
+						if (player != null) {
+							try {
+								player.setVolume(vol);
+							} catch (Exception ex) {}
+						}
+
+						channel.sendMessage("Success! The volume of the audio has been set to " + vol + "%.").complete();
+						return;
+					} catch (NumberFormatException e) {
+						channel.sendMessage("Sorry, I don't recognize that number.").complete();
+						return;
+					}
+				}
 			}
 		}
 	}
