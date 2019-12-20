@@ -139,8 +139,8 @@ public class MessageListener extends ListenerAdapter {
 
 				channel.sendMessage("Success! The karaoke bot has been terminated.").complete();
 				return;
-			} else if ((raw.startsWith("::vol") || raw.startsWith("::volume")) && this.hasPermission(member)) {
-				String msg = raw.substring("::setup".length()).trim();
+			} else if (raw.startsWith("::volume") && this.hasPermission(member)) {
+				String msg = raw.substring("::volume".length()).trim();
 				String[] args = msg.split(" ");
 
 				if (args.length < 1) {
