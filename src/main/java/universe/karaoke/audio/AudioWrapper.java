@@ -1,4 +1,4 @@
-package universe.karaoke.util;
+package universe.karaoke.audio;
 
 import java.nio.ByteBuffer;
 
@@ -7,14 +7,14 @@ import com.sedmelluq.discord.lavaplayer.track.playback.MutableAudioFrame;
 
 import net.dv8tion.jda.api.audio.AudioSendHandler;
 
-public class MP3AudioSource implements AudioSendHandler {
+public class AudioWrapper implements AudioSendHandler {
 
 	private AudioPlayer audioPlayer;
 
 	private ByteBuffer buffer;
 	private MutableAudioFrame frame;
 
-	public MP3AudioSource(AudioPlayer audioPlayer) {
+	public AudioWrapper(AudioPlayer audioPlayer) {
 		this.audioPlayer = audioPlayer;
 
 		this.buffer = ByteBuffer.allocate(1024);
@@ -27,17 +27,8 @@ public class MP3AudioSource implements AudioSendHandler {
 	}
 
 	public ByteBuffer provide20MsAudio() {
-		// System.out.println(lastFrame.getDataLength() + " | " + lastFrame.getData().length);
-		// return lastFrame.getData();
-		// ((Buffer) this.buffer).flip();
-		// return buffer;
-
 		this.buffer.flip();
 		return buffer;
-
-		// (())
-		// lastFrame.getData(this.buffer, 0);
-		// return this.buffer;
 	}
 
 	public boolean isOpus() {

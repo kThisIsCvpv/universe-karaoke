@@ -8,32 +8,40 @@ import java.io.InputStreamReader;
 public class App {
 
 	public static void main(String[] args) throws Exception {
-		if (args.length < 1) {
-			System.err.println("You must specify the video location.");
-			return;
-		}
-
-		long startTime = System.currentTimeMillis();
-		System.out.println("Downloading the video from YouTube.");
-
-		File baseAudio = downloadYoutubeAudio(args[0]);
-
-		if (baseAudio == null) {
-			System.err.println("Unable to download the video from YouTube.");
-			return;
-		}
-
-		System.out.println("Removing the vocals from the audio.");
-
-		File vocalAudio = removeVocals(baseAudio);
-
-		if (vocalAudio == null) {
-			System.err.println("Unable to remove the vocals from the audio.");
-			return;
-		}
-
-		System.out.println("Success! Elapsed time: " + (System.currentTimeMillis() - startTime) + " ms");
-		System.out.println(vocalAudio.getAbsolutePath());
+		String message = "3213/3123/3123.mp3";
+		System.out.println(message.substring(0, message.length()));
+//		System.out.println(message.substring("--setup-youtube".length() + 1));
+//		message = "";
+//		String[] val = message.split(" ");
+//		System.out.println(val.length);
+//		System.out.println(";" + val[0] + ";");
+		
+//		if (args.length < 1) {
+//			System.err.println("You must specify the video location.");
+//			return;
+//		}
+//
+//		long startTime = System.currentTimeMillis();
+//		System.out.println("Downloading the video from YouTube.");
+//
+//		File baseAudio = downloadYoutubeAudio(args[0]);
+//
+//		if (baseAudio == null) {
+//			System.err.println("Unable to download the video from YouTube.");
+//			return;
+//		}
+//
+//		System.out.println("Removing the vocals from the audio.");
+//
+//		File vocalAudio = removeVocals(baseAudio);
+//
+//		if (vocalAudio == null) {
+//			System.err.println("Unable to remove the vocals from the audio.");
+//			return;
+//		}
+//
+//		System.out.println("Success! Elapsed time: " + (System.currentTimeMillis() - startTime) + " ms");
+//		System.out.println(vocalAudio.getAbsolutePath());
 	}
 
 	public static File downloadYoutubeAudio(String url) {
