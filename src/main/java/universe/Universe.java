@@ -25,6 +25,7 @@ public class Universe {
 
 	private Map<String, AudioPlayer> audioPlayers;
 	private Map<String, KaraokeGame> activeGames;
+	private Map<String, Integer> audioVolume;
 
 	public Universe(final String privateKey) {
 		try {
@@ -38,6 +39,7 @@ public class Universe {
 
 		this.activeGames = new HashMap<String, KaraokeGame>();
 		this.audioPlayers = new HashMap<String, AudioPlayer>();
+		this.audioVolume = new HashMap<String, Integer>();
 
 		this.audioManager = new DefaultAudioPlayerManager();
 		AudioSourceManagers.registerLocalSource(this.audioManager);
@@ -76,6 +78,16 @@ public class Universe {
 
 	public void setAudio(String guild, AudioPlayer game) {
 		this.audioPlayers.put(guild, game);
+	}
+	
+	public int getVolume(String guild) {
+		if (this.audioVolume.containsKey(guild))
+			return this.audioVolume.get(guild);
+		return 100;
+	}
+
+	public void setVolume(String guild, int volume) {
+		this.audioVolume.put(guild, volume);
 	}
 
 	public JDA getJDA() {

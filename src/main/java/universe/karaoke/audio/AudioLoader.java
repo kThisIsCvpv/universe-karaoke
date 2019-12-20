@@ -30,7 +30,7 @@ public class AudioLoader implements AudioLoadResultHandler {
 		this.player.playTrack(track);
 
 		TextChannel channel = this.getChannel();
-		channel.sendMessage("Now Playing: ``" + game.getSongName() + "``").queue();
+		channel.sendMessage("**Now Playing:** " + game.getSongName()).queue();
 	}
 
 	public void playlistLoaded(AudioPlaylist playlist) {

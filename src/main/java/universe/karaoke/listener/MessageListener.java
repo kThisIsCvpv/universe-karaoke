@@ -118,7 +118,7 @@ public class MessageListener extends ListenerAdapter {
 						}
 					}
 
-					channel.sendMessage("Beginning to download: ``" + game.getSongLink() + "``...").complete();
+					channel.sendMessage("**Beginning to download:** ``" + game.getSongLink() + "``").complete();
 					game.startDownload();
 					return;
 				}

@@ -163,7 +163,7 @@ public class KaraokeGame {
 		JDA jda = this.universe.getJDA();
 		TextChannel channel = jda.getTextChannelById(this.textChannel);
 
-		Message message = channel.sendMessage("Hey, <@" + this.singer + ">. Press the microphone emote when you're ready to go.").complete();
+		Message message = channel.sendMessage("**Hey, <@" + this.singer + ">. Press the microphone emote when you're ready to go.**").complete();
 		message.addReaction(Constant.MICROPHONE_EMOTE).complete();
 		this.readyMessage = message.getId();
 
