@@ -3,7 +3,7 @@
 Karaoke is an activity that many people enjoy during their free time.
 This is a bot used to manage a Karaoke event on Discord.
 
-**Warning:** Beware, this software does not compensate for conenction lag.
+**Warning:** Beware, this software does not compensate for connection lag.
 
 # Setup:
 
