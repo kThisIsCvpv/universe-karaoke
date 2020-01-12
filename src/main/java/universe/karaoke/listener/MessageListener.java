@@ -57,7 +57,7 @@ public class MessageListener extends ListenerAdapter {
 				} else {
 					KaraokeGame game = this.universe.getKarokeGame(ugid);
 					if (game != null && game.getGameState() != GameState.SETUP) {
-						channel.sendMessage("Sorry, there is already a game going on.").complete();
+						channel.sendMessage("Sorry, there is already a game going on: " + game.getGameState()).complete();
 						return;
 					}
 
