@@ -1,4 +1,4 @@
-# Discord Karaoke
+# Discord Karaoke [![Build Status](https://travis-ci.org/kThisIsCvpv/universe-karaoke.svg?branch=master)](https://github.com/kThisIsCvpv/universe-karaoke)
 
 Karaoke is an activity that many people enjoy during their free time.
 This is a bot used to manage a Karaoke event on Discord.
