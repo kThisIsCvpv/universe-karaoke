@@ -50,7 +50,6 @@ Begin a new karaoke game in the server.
 - **URL** is the link to the YouTube video.
 - **--no-vocals** is an optional tag to specify whether or not you wish to have the vocals removed.
 ```
-Examples:
 ::setup @Nagi#0001 https://www.youtube.com/watch?v=y6120QOlsfU 
 ::setup @Nagi#0001 https://www.youtube.com/watch?v=y6120QOlsfU --no-vocals
 ```
